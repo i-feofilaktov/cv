@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\usepackage[scale=0.9]{geometry}
+\usepackage{multicol}
+
+\moderncvstyle{classic}
+\moderncvcolor{black}
+\setlength{\hintscolumnwidth}{4cm}
+
+\name{Igor}{Feofilaktov}
+\title{Software engineer}
+\email{feofilaktov.igor@gmail.com}
+\mobile{+7 (915) 423-81-89}
+
+\begin{document}
+    \makecvtitle
+
+    \section{Work Experience}
+        \cventry{Apr 2018 -- Present}{Yandex}{Software engineer}{Adevertising technologies}{QA\&Release infrastructure team}{
+		Supporting and developing testing framework and infrastructure services for advertising backend system
+		\begin{itemize}
+			\item Designing and implementing CI/CD processes for the service, increased average amount of releases from 1 per week to 2-3 per week
+			\item Developing acceptance tests for the service
+		\end{itemize}
+	}
+        \cventry{Aug 2017 -- Apr 2018}{Yandex}{Software developer}{Adevertising technologies}{Statistics infrastructure team}{
+		Supported and developed infrastructure tools and programs
+		\begin{itemize}
+			\item Redesigned and implemented new website monitoring service for internal usage, increased average accuracy by 20 times (in comparison with old version)
+			\item Improved database migration tool
+		\end{itemize}
+	}
+        \cventry{Dec 2016 -- Jul 2017}{New Cloud Technologies}{QA automation engineer}{Mail platform developing team}{}{
+		Worked as a developer in a QA team on automated testing for mail system in the early stages of a project's lifecycle. Performed functional testing for service's backend, integrated QA processes into CI/CD system.
+		\begin{itemize}
+			\item Wrote automated tests for service's API, both internal and external
+			\item Designed and implemented testing framework
+			\item Integrated auto tests launch into CI system, provided test reports to software developers
+			\item Designed issue tracker workflows for bug tracking issues, feature requests and releases
+		\end{itemize}
+	} 
+        \cventry{Sep 2015 -- Nov 2016}{Sputnik.ru}{QA automation engineer}{Mail developing team}{}{
+		Performed functional, regression and acceptance testing for backend part of the project.
+		\begin{itemize}
+			\item Implemented automated tests for components of the system
+			\item Designed and implemented testing tools and programs for manual testers
+		\end{itemize}
+	} 
+        \cventry{May 2014 -- Aug 2015}{Internet-Initiatives Development Fund}{Tech support engineer}{IT team}{}{
+		Solved really wide range of problems
+		\begin{itemize}
+			\item Set up monitoring system for network devices and prodiction services
+			\item Supported network and production infrastructure
+			\item Took part in a manual testing process for company's website
+			\item Set up and supported user workstations
+		\end{itemize}
+	} 
+
+    \section{Education}
+        \cventry{2009-2014}{Specialist in Mathematics}{Lomonosov Moscow State University, Moscow, Russia}{}{}{}
+
+    \section{Skills}
+        \cventry{Programming Languages}{
+		Advanced level:
+                	Python
+		\newline Intermediate level:
+			Perl
+		\newline Basic level:
+			C++,
+			Bash
+        }{}{}{}{}
+        \cventry{Testing tools}{
+		pytest,
+		allure
+        }{}{}{}{}
+        \cventry{Developing Tools}{
+		git,
+		mercurial,
+		vim,
+		linux,
+		UNIX tools
+        }{}{}{}{}
+        \cventry{Administration Tools}{
+		zabbix,
+		docker
+        }{}{}{}{}
+        \cventry{Other}{
+		RESTful services,
+		RPC,
+		microservice architecture,
+        }{}{}{}{}
+        \cventry{Languages}{
+		Russian (native),
+		English (high intermediate),
+        }{}{}{}{}
+\end{document}

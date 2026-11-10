@@ -8,7 +8,7 @@
 \setlength{\hintscolumnwidth}{4cm}
 
 \name{Igor}{Feofilaktov}
-\title{Senior software engineer}
+\title{Senior software engineer\\Platform \& Developer Productivity}
 \email{feofilaktov.igor@gmail.com}
 \mobile{+381 (63) 753-76-81}
 \address{Cara Nikolaja II st, 69}{Belgrade, Serbia}
@@ -17,26 +17,41 @@
     \makecvtitle
 
     \section{Work Experience}
-        \cventry{Nov 2021 -- Present}{Yandex}{Senior software engineer}{Adevertising technologies}{QA\&Release infrastructure team}{
-        Leading team of QA engineers tasked with providing regression and acceptance tests in production-like environment for advertising backend service.
+        \cventry{Nov 2025 -- Present}{Yandex}{Senior software engineer}{Advertising technologies}{Ads Runtime Infrastructure Group}{
+        Platform engineering for a large-scale ads retrieval service: deployment tooling, infrastructure-as-code and change safety.
 		\begin{itemize}
-			\item Designed the infarstructure for differential tests using real external services instead of stubs which helped to split monolith application into several microservices.
-            \item Decreased testing service downtime by 20\% by organizing on-call duty process.
-            \item Reduced resource utilization by tests by 30\% via various optimizations.
-            \item Performed capacity planning and resource management for QA\&test infrastructure.
+            \item Main contributor to a Go deployment-spec generator (Starlark/ytt, Helm/kustomize-like), taking it from an AI-generated prototype to a production-ready tool: reworked parts of the architecture and the code organization, and added user-facing features such as Starlark extensions. Led its adoption in the ads retrieval service: about 60 services across 160+ deployment stages moved to it.
+            \item Owned change safety for the tool and the specs it generates:
+                \begin{itemize}
+                    \item Pre-merge diff tests for tool developers: every tool change is checked against all user specs.
+                    \item Diff tests for users, enabled out of the box: spec changes and cluster quota impact are visible on every pull request.
+                    \item Versioned feature flags with stable/prestable/testing channels, so opt-in features reach users in one release cycle.
+                \end{itemize}
+            \item Made every infrastructure change of the retrieval service visible at review time with mandatory spec diff tests in CI, and moved all services to plain Kubernetes-based infrastructure-as-code with zero diff verified by tests.
+            \item On-call: ran release rollouts, load drills and capacity changes; mitigated and analysed incidents and traced recurring ones to root causes; reworked alerting as code for cleaner, more actionable alerts.
         \end{itemize}
     }
-        \cventry{Apr 2018 -- Oct 2021}{Yandex}{Software engineer}{Adevertising technologies}{QA\&Release infrastructure team}{
+        \cventry{Nov 2021 -- Oct 2025}{Yandex}{Senior software engineer}{Advertising technologies}{Ads testing \& release infrastructure}{
+        Main developer of the acceptance platform for the core C++ ad server (traffic-replay diff, performance and sanitizer testing), used daily by 200+ engineers for pre-merge checks, A/B-experiment validation and release acceptance. From late 2023, led the platform's planning: its documentation, stability and SDK migration projects, the 2024 roadmap, and delegation of a growing share of the work.
+		\begin{itemize}
+            \item Gave every change faster feedback: pre-merge check 5\,h $\rightarrow$ 3\,h without losing feature coverage; A/B-experiment test data 24\,h $\rightarrow$ 3\,h old; sanitizer and stability checks several hours faster.
+            \item Cut the SLO for the time-to-production KPI from about 2 days to under 15\,h (p90 target $\le$12\,h), with alerting and on-call dashboards.
+            \item Made tests production-faithful and trustworthy: configuration overrides go through an emulator of the production dynamic-config system (equivalence verified on 23k+ test cases); wider regression checks, including memory-regression thresholds agreed with the ad-server team; the platform's reliability goal met for two consecutive half-years.
+            \item Led the migration of all pre-merge checks to the company-wide monorepo CI and retired a legacy task SDK; designed a component-based test-harness framework, so new production microservices join acceptance tests in days, with full coverage.
+            \item Owned the migration plan to the company's shared diff and performance testing platform: proof of concept on HashiCorp Nomad/LXC, then production-ready checks run in parallel with the legacy ones to prove parity.
+        \end{itemize}
+        }
+        \cventry{Apr 2018 -- Oct 2021}{Yandex}{Software engineer}{Advertising technologies}{QA\&Release infrastructure team}{
         Developed reliable differential tests for the Ads engine with self-updating test data gathered from the production environment. 
         Improved QA\&Release processes:
 		\begin{itemize}
-			\item Triple the number of releases per week by automating the acceptance process.
+			\item Tripled the number of releases per week by automating the acceptance process.
 			\item Increased accuracy of load differential tests by 2 times.
             \item Improved testing infrastructure stability and availability by setting up monitoring and alerting system.
 		\end{itemize}
 	}
-        \cventry{Aug 2017 -- Apr 2018}{Yandex}{Software engineer}{Adevertising technologies}{Statistics infrastructure team}{
-        Designed and implemented distributed system for availability monitoring of advertiser's websites. Decreased average reaction time from 24 hours to 1 hour.
+        \cventry{Aug 2017 -- Apr 2018}{Yandex}{Software engineer}{Advertising technologies}{Statistics infrastructure team}{
+        Designed and implemented distributed system for availability monitoring of advertisers' websites. Decreased average reaction time from 24 hours to 1 hour.
 	}
         \cventry{Dec 2016 -- Jul 2017}{New Cloud Technologies}{QA automation engineer}{Mail platform developing team}{}{
 		Built automated testing framework from the ground up. Integrated QA processes into the CI/CD system.
@@ -55,8 +70,8 @@
         \cventry{May 2014 -- Aug 2015}{Internet-Initiatives Development Fund}{Tech support engineer}{IT team}{}{
 		Solved wide range of problems including:
 		\begin{itemize}
-			\item Set up Zabbix monitoring system for network devices and prodiction services.
-			\item Automated routine tasks such as parsing WEB-pages to organize data for easier analysis in MS Excel.
+			\item Set up Zabbix monitoring system for network devices and production services.
+			\item Automated routine tasks such as parsing web pages to organize data for easier analysis in MS Excel.
 			\item Automated manual tests for company's website using Selenium web driver framework.
 		\end{itemize}
 	} 

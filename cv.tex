@@ -2,95 +2,88 @@
 
 \usepackage[scale=0.9]{geometry}
 \usepackage{multicol}
+\usepackage{needspace}
 
 \moderncvstyle{classic}
 \moderncvcolor{black}
-\setlength{\hintscolumnwidth}{4cm}
+\setlength{\hintscolumnwidth}{3.5cm}
+
+% Keep every section and subsection heading on the same page as its first entry.
+% Must come after \moderncvstyle, which (re)defines \section and \subsection.
+\let\cvsectionorig\section
+\renewcommand{\section}[1]{\needspace{5\baselineskip}\cvsectionorig{#1}}
+\let\cvsubsectionorig\subsection
+\renewcommand{\subsection}[1]{\needspace{4\baselineskip}\cvsubsectionorig{#1}}
 
 \name{Igor}{Feofilaktov}
 \title{Senior software engineer\\Platform \& Developer Productivity}
 \email{feofilaktov.igor@gmail.com}
 \mobile{+381 (63) 753-76-81}
-\address{Cara Nikolaja II st, 69}{Belgrade, Serbia}
+\address{Belgrade, Serbia}{}
+% TODO: add profile links, e.g. \social[linkedin]{<handle>} and \social[github]{<handle>}
+% TODO: add work authorization / relocation status (e.g. in the summary or as \extrainfo{...})
 
 \begin{document}
     \makecvtitle
 
+    \section{Summary}
+        \cvitem{}{Senior software engineer with 9+ years of platform and developer-productivity work on a large-scale ads platform (CI and acceptance testing, deployment tooling and infrastructure-as-code), with an approach of making change safe, then fast: pre-merge diff tests, mandatory CI gates and zero-diff migrations. Open to platform and developer-productivity roles.}
+
     \section{Work Experience}
-        \cventry{Nov 2025 -- Present}{Yandex}{Senior software engineer}{Advertising technologies}{Ads Runtime Infrastructure Group}{
-        Platform engineering for a large-scale ads retrieval service: deployment tooling, infrastructure-as-code and change safety.
+    \subsection{Yandex, Advertising technologies (Aug 2017 -- Present)}
+        \cventry{Nov 2025 -- Present}{Senior software engineer}{Ads runtime infrastructure team}{}{}{
+        Deployment tooling, infrastructure-as-code and change safety for a large-scale ads retrieval service.
 		\begin{itemize}
-            \item Main contributor to a Go deployment-spec generator (Starlark/ytt, Helm/kustomize-like), taking it from an AI-generated prototype to a production-ready tool: reworked parts of the architecture and the code organization, and added user-facing features such as Starlark extensions. Led its adoption in the ads retrieval service: about 60 services across 160+ deployment stages moved to it.
-            \item Owned change safety for the tool and the specs it generates:
+            \item \textbf{Go deployment-spec generator:} main contributor; took it from prototype to production (architecture, code organization, user-facing features such as Starlark extensions). Led its adoption across the retrieval service: about 60 services, 160+ deployments.
+            \item \textbf{Change safety for the tool and its specs:}
                 \begin{itemize}
-                    \item Pre-merge diff tests for tool developers: every tool change is checked against all user specs.
-                    \item Diff tests for users, enabled out of the box: spec changes and cluster quota impact are visible on every pull request.
-                    \item Versioned feature flags with stable/prestable/testing channels, so opt-in features reach users in one release cycle.
+                    \item \textbf{Tool developers:} pre-merge diff tests check every tool change against all user specs.
+                    \item \textbf{Users:} diff tests out of the box; spec changes and quota impact visible on every pull request.
+                    \item \textbf{Releases:} versioned feature flags and staged channels (testing $\rightarrow$ prestable $\rightarrow$ stable); opt-in features ship in one release cycle.
                 \end{itemize}
-            \item Made every infrastructure change of the retrieval service visible at review time with mandatory spec diff tests in CI, and moved all services to plain Kubernetes-based infrastructure-as-code with zero diff verified by tests.
-            \item On-call: ran release rollouts, load drills and capacity changes; mitigated and analysed incidents and traced recurring ones to root causes; reworked alerting as code for cleaner, more actionable alerts.
-        \end{itemize}
-    }
-        \cventry{Nov 2021 -- Oct 2025}{Yandex}{Senior software engineer}{Advertising technologies}{Ads testing \& release infrastructure}{
-        Main developer of the acceptance platform for the core C++ ad server (traffic-replay diff, performance and sanitizer testing), used daily by 200+ engineers for pre-merge checks, A/B-experiment validation and release acceptance. From late 2023, led the platform's planning: its documentation, stability and SDK migration projects, the 2024 roadmap, and delegation of a growing share of the work.
-		\begin{itemize}
-            \item Gave every change faster feedback: pre-merge check 5\,h $\rightarrow$ 3\,h without losing feature coverage; A/B-experiment test data 24\,h $\rightarrow$ 3\,h old; sanitizer and stability checks several hours faster.
-            \item Cut the SLO for the time-to-production KPI from about 2 days to under 15\,h (p90 target $\le$12\,h), with alerting and on-call dashboards.
-            \item Made tests production-faithful and trustworthy: configuration overrides go through an emulator of the production dynamic-config system (equivalence verified on 23k+ test cases); wider regression checks, including memory-regression thresholds agreed with the ad-server team; the platform's reliability goal met for two consecutive half-years.
-            \item Led the migration of all pre-merge checks to the company-wide monorepo CI and retired a legacy task SDK; designed a component-based test-harness framework, so new production microservices join acceptance tests in days, with full coverage.
-            \item Owned the migration plan to the company's shared diff and performance testing platform: proof of concept on HashiCorp Nomad/LXC, then production-ready checks run in parallel with the legacy ones to prove parity.
+            \item \textbf{Infrastructure changes visible at review time:} mandatory spec diff tests in CI; all services moved to plain IaC on an in-house, Kubernetes-API-based platform (CRDs) with zero diff.
+            \item \textbf{On-call:} release rollouts, load drills, capacity changes; incident mitigation and root-cause analysis; alerting reworked as code.
         \end{itemize}
         }
-        \cventry{Apr 2018 -- Oct 2021}{Yandex}{Software engineer}{Advertising technologies}{QA\&Release infrastructure team}{
-        Developed reliable differential tests for the Ads engine with self-updating test data gathered from the production environment. 
-        Improved QA\&Release processes:
+        \cventry{Nov 2021 -- Oct 2025}{Senior software engineer}{Ads testing \& release infrastructure team}{}{}{
+        Technical lead of a three-person team for the ad server's acceptance platform (traffic-replay diff, performance and sanitizer testing), used daily by 200+ engineers.
 		\begin{itemize}
-			\item Tripled the number of releases per week by automating the acceptance process.
-			\item Increased accuracy of load differential tests by 2 times.
-            \item Improved testing infrastructure stability and availability by setting up monitoring and alerting system.
+            \item \textbf{Faster feedback:} pre-merge check 5\,h $\rightarrow$ 3\,h with full feature coverage; A/B test data 24\,h $\rightarrow$ 3\,h old.
+            \item \textbf{Time-to-production:} p90 age of the latest release-ready build cut from about 2 days to 12\,h, held there by an SLO with alerting.
+            \item \textbf{CI migration:} all pre-merge checks moved to the company-wide monorepo CI; legacy CI task SDK retired.
+            \item \textbf{Test-harness framework:} component-based design; new microservices join acceptance tests in days, with full coverage.
+            \item \textbf{Platform consolidation:} owned the migration plan to the shared diff and performance testing platform: a Nomad/LXC proof of concept, then parallel runs to prove parity.
+        \end{itemize}
+        }
+        \cventry{Apr 2018 -- Oct 2021}{Software engineer}{QA \& release infrastructure team}{}{}{
+        Developed reliable diff tests for the ads engine, with test data refreshed automatically from production. Improved QA and release processes:
+		\begin{itemize}
+			\item Tripled releases, from 1 to 3 per week on average, by automating the acceptance process.
+			\item Halved the minimum detectable effect (MDE) of performance diff tests, from 2\% to 1\%.
+            \item Improved the stability and availability of the testing infrastructure by setting up a monitoring and alerting system.
 		\end{itemize}
 	}
-        \cventry{Aug 2017 -- Apr 2018}{Yandex}{Software engineer}{Advertising technologies}{Statistics infrastructure team}{
-        Designed and implemented distributed system for availability monitoring of advertisers' websites. Decreased average reaction time from 24 hours to 1 hour.
+        \cventry{Aug 2017 -- Apr 2018}{Software engineer}{Statistics infrastructure team}{}{}{
+        Designed and implemented a distributed system for availability monitoring of advertisers' websites, cutting the average reaction time from 24 hours to 1 hour.
 	}
-        \cventry{Dec 2016 -- Jul 2017}{New Cloud Technologies}{QA automation engineer}{Mail platform developing team}{}{
-		Built automated testing framework from the ground up. Integrated QA processes into the CI/CD system.
-		\begin{itemize}
-			\item Wrote automated tests for service's API.
-			\item Designed issue tracker workflows for bug tracking issues, feature requests and releases.
-		\end{itemize}
-	} 
-        \cventry{Sep 2015 -- Nov 2016}{Search portal Sputnik}{QA automation engineer}{Mail developing team}{}{
-		Automated functional and regression tests for service backend.
-		\begin{itemize}
-			\item Implemented automated tests for components of the system
-			\item Designed and implemented web-service aimed to help the manual testers set up their test environment.
-		\end{itemize}
-	} 
-        \cventry{May 2014 -- Aug 2015}{Internet-Initiatives Development Fund}{Tech support engineer}{IT team}{}{
-		Solved wide range of problems including:
-		\begin{itemize}
-			\item Set up Zabbix monitoring system for network devices and production services.
-			\item Automated routine tasks such as parsing web pages to organize data for easier analysis in MS Excel.
-			\item Automated manual tests for company's website using Selenium web driver framework.
-		\end{itemize}
-	} 
+
+    \subsection{Earlier experience (2014 -- 2017)}
+        \cvitem{2015 -- 2017}{QA automation engineer in mail service teams at New Cloud Technologies (Dec 2016 -- Jul 2017) and Search portal Sputnik (Sep 2015 -- Nov 2016): built an automated testing framework from the ground up, integrated QA into CI/CD, and automated API, functional and regression tests.}
+        \cvitem{2014 -- 2015}{Tech support engineer at Internet-Initiatives Development Fund: set up Zabbix monitoring for network devices and production services; automated routine data processing and website tests with Selenium.}
 
     \section{Education}
-        \cventry{2009-2014}{Specialist in Mathematics}{Lomonosov Moscow State University, Moscow, Russia}{}{}{}
+        \cventry{2009 -- 2014}{Specialist in Mathematics (5-year degree, MSc equivalent)}{Lomonosov Moscow State University}{Moscow, Russia}{}{}
 
-    \section{Programming languages}{
-        \cvcomputer{Advanced level:}{python}{Basic level:}{SQL, C++, Bash, Perl}
-    }{}{}{}
+    \section{Skills}
+        \cvitem{Programming}{Python (advanced), Go (production), C++ (reading and debugging), SQL, Bash}
+        \cvitem{Infrastructure}{Infrastructure-as-code on a Kubernetes-API-based platform (CRDs), Helm/kustomize-style templating (ytt, Starlark), protobuf schemas, HashiCorp Nomad, LXC, pod autoscaling}
+        \cvitem{CI/CD \& testing}{Monorepo CI, release automation, feature flags and staged release channels, traffic-replay diff testing, performance testing, sanitizers (ASan, TSan, MSan), pytest}
+        \cvitem{Reliability}{SLI/SLO design, alerting and dashboards as code, Grafana, on-call and incident management, capacity planning}
+        \cvitem{Data}{MapReduce-based big-data platform, distributed key-value stores}
+        \cvitem{Earlier tools}{Jenkins, Zabbix, Selenium, Perl}
 
-    \section{Skills}{
-        \cvcomputer{Testing tools}{pytest, allure}{VCS}{git, mercurial}
-        \cvcomputer{Monitoring Tools}{zabbix, grafana,\newline Yandex internal monitoring systems}{Development Tools}{vim, ipython, gdb, UNIX tools}
-        \cvcomputer{CI/CD}{Jenkins,\newline Yandex internal CI/CD system}{Other}{RESTful, RPC,\newline Microservice architecture}
-    }{}{}{}
-
-    \section{Languages}{
-        \cvlanguage{Russian}{native}{}
-        \cvlanguage{English}{high intermediate}{}
-    }{}{}{}
+    \section{Languages}
+        \cvlanguage{Russian}{Native}{}
+        \cvlanguage{English}{B2 (upper intermediate)}{}
+        \cvlanguage{Serbian}{A2 (elementary)}{}
 \end{document}
